@@ -1,0 +1,39 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Student {
+  id           String             @id @default(uuid())
+  fullName     String
+  studentId    String?
+  gender       String
+  age          Int
+  grade        String             @default("Grade 7")
+  classSection String
+  schoolName   String
+  avatar       String?            @default("avatar-1")
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  attempts     AssessmentAttempt[]
+}
+
+model AssessmentAttempt {
+  id             String    @id @default(uuid())
+  assessmentSlug String
+  studentId      String
+  student        Student   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  
+  answers        String
+  scores         String
+  topCode        String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([assessmentSlug])
+  @@index([studentId])
+}

@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-kantumruy: 'Kantumruy Pro', system-ui, -apple-system, sans-serif;
+    
+    /* Academic & Institutional Palette */
+    --brand-primary: #1d4ed8;
+    --brand-primary-hover: #1e40af;
+    --brand-subtle: #eff6ff;
+    --brand-border: #bfdbfe;
+    
+    --surface-bg: #f8fafc;
+    --surface-card: #ffffff;
+    --border-subtle: #e2e8f0;
+    --border-strong: #cbd5e1;
+    
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+  }
+
+  body {
+    font-family: var(--font-kantumruy), system-ui, -apple-system, sans-serif;
+    line-height: 1.65;
+    background-color: var(--surface-bg);
+    color: var(--text-secondary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  input, select, textarea, button {
+    font-family: inherit;
+  }
+}
+
+/* Ensure Khmer diacritics, subscripts and tone marks are not clipped */
+.khmer-content {
+  font-family: var(--font-kantumruy), system-ui, sans-serif;
+  line-height: 1.75;
+  word-break: break-word;
+}
+
+/* Subtle focus-visible ring for accessible, human-centered UI */
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .break-inside-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

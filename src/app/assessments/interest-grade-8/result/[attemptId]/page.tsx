@@ -1,0 +1,189 @@
+"use client";
+
+import React, { useEffect, useState, use, Suspense } from "react";
+import Link from "next/link";
+import { AssessmentLayout } from "@/components/shared/AssessmentLayout";
+import { StepProgressHeader } from "@/components/shared/StepProgressHeader";
+import { InterestResultBanner } from "@/components/assessments/interest-grade-8/InterestResultBanner";
+import { InterestScoreTable } from "@/components/assessments/interest-grade-8/InterestScoreTable";
+import { InterestGroupCards } from "@/components/assessments/interest-grade-8/InterestGroupCards";
+import { StudentProfile } from "@/types/assessment";
+import { GroupedInterestScoreResult } from "@/types/groupedInterest";
+import {
+  Printer,
+  RotateCcw,
+  Share2,
+  Check,
+  AlertCircle,
+  FileCheck2,
+} from "lucide-react";
+
+interface ResultPageProps {
+  params: Promise<{ attemptId: string }>;
+}
+
+function ResultContent({ params }: ResultPageProps) {
+  const unwrappedParams = use(params);
+  const attemptId = unwrappedParams.attemptId;
+
+  const [student, setStudent] = useState<StudentProfile | null>(null);
+  const [scoreResult, setScoreResult] = useState<GroupedInterestScoreResult | null>(null);
+  const [createdAt, setCreatedAt] = useState<string | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    async function fetchResult() {
+      try {
+        setLoading(true);
+        const res = await fetch(`/api/assessments/results/${attemptId}`);
+        const data = await res.json();
+
+        if (!res.ok || !data.success) {
+          throw new Error(data.error || "មិនអាចទាញយកលទ្ធផលបានទេ");
+        }
+
+        setStudent(data.student);
+        setScoreResult(data.scoreResult);
+        setCreatedAt(data.attempt?.createdAt);
+      } catch (err: any) {
+        console.error(err);
+        setError(err.message || "មានបញ្ហាក្នុងការទាញយកលទ្ធផល");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    if (attemptId) {
+      fetchResult();
+    }
+  }, [attemptId]);
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 text-slate-500">
+        <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mb-3" />
+        <p className="text-xs text-slate-600 font-medium">កំពុងផ្ទុករបាយការណ៍លទ្ធផលតេស្ត...</p>
+      </div>
+    );
+  }
+
+  if (error || !student || !scoreResult) {
+    return (
+      <div className="max-w-lg mx-auto p-6 rounded-xl bg-white border border-slate-200 text-center shadow-2xs">
+        <div className="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center mx-auto mb-3 border border-red-100">
+          <AlertCircle className="w-5 h-5" />
+        </div>
+        <h2 className="text-base font-bold text-slate-900 mb-1">
+          រកមិនឃើញលទ្ធផលតេស្តនេះទេ
+        </h2>
+        <p className="text-xs text-slate-500 mb-5">{error}</p>
+        <Link
+          href="/assessments/interest-grade-8"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold text-xs hover:bg-blue-700 transition-colors shadow-2xs"
+        >
+          <RotateCcw className="w-3.5 h-3.5" />
+          <span>ចាប់ផ្តើមធ្វើតេស្តសារជាថ្មី</span>
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="max-w-4xl mx-auto space-y-5 pb-12">
+      {/* Official Action Toolbar (Print, Share, Retake) */}
+      <div className="flex flex-wrap items-center justify-between gap-3 no-print bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs">
+        <div className="flex items-center gap-2">
+          <FileCheck2 className="w-4 h-4 text-blue-700" />
+          <span className="text-xs sm:text-sm font-bold text-slate-900">
+            របាយការណ៍វាយតម្លៃចំណង់ចំណូលចិត្ត (ថ្នាក់ទី ៨)
+          </span>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={handlePrint}
+            className="px-3.5 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
+          >
+            <Printer className="w-3.5 h-3.5" />
+            <span>បោះពុម្ព / រក្សាទុក PDF</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={handleCopyLink}
+            className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-200 transition-colors flex items-center gap-1.5 cursor-pointer"
+          >
+            {copied ? (
+              <>
+                <Check className="w-3.5 h-3.5 text-emerald-600" />
+                <span className="text-emerald-700 font-semibold">បានចម្លងតំណភ្ជាប់!</span>
+              </>
+            ) : (
+              <>
+                <Share2 className="w-3.5 h-3.5 text-slate-500" />
+                <span>ចែករំលែក</span>
+              </>
+            )}
+          </button>
+
+          <Link
+            href="/assessments/interest-grade-8"
+            className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-200 transition-colors flex items-center gap-1.5"
+          >
+            <RotateCcw className="w-3.5 h-3.5 text-slate-500" />
+            <span>ធ្វើតេស្តថ្មី</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* 1. Student Dossier Header & Primary Group Result */}
+      <InterestResultBanner
+        student={student}
+        scoreResult={scoreResult}
+        createdAt={createdAt}
+      />
+
+      {/* 2. Comparative 3-Row Score Summary Table + Visual Bar Chart */}
+      <InterestScoreTable scoreResult={scoreResult} />
+
+      {/* 3. Detailed Guidance Cards for all Groups & Counseling Note */}
+      <InterestGroupCards scoreResult={scoreResult} />
+    </div>
+  );
+}
+
+export default function InterestGrade8ResultPage({ params }: ResultPageProps) {
+  return (
+    <AssessmentLayout
+      gradeBadge="ថ្នាក់ទី ៨ (Grade 8)"
+      assessmentNameKh="តេស្តវាយតម្លៃចំណង់ចំណូលចិត្ត"
+      assessmentNameEn="Grade 8 Interest Assessment"
+      resetHref="/assessments/interest-grade-8"
+    >
+      <StepProgressHeader currentStep={3} />
+      <Suspense
+        fallback={
+          <div className="flex flex-col items-center justify-center py-20 text-slate-500">
+            <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mb-3" />
+            <p className="text-xs text-slate-600">កំពុងផ្ទុកទិន្នន័យ...</p>
+          </div>
+        }
+      >
+        <ResultContent params={params} />
+      </Suspense>
+    </AssessmentLayout>
+  );
+}
