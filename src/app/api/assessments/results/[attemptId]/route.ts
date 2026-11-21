@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { calculateHollandScores } from "@/lib/scoring/hollandRiasec";
-import { calculateGroupedInterestScores } from "@/lib/scoring/groupedInterest";
+import { calculateTrackScores } from "@/lib/scoring/trackClassification";
 
 export async function GET(
   req: NextRequest,
@@ -48,10 +48,13 @@ export async function GET(
 
     // Recompute score result dynamically based on assessmentSlug
     let scoreResult: any = null;
-    if (attempt.assessmentSlug === "interest-grade-8") {
-      scoreResult = calculateGroupedInterestScores(parsedAnswers, 30);
-    } else if (attempt.assessmentSlug === "holland-riasec") {
+    if (attempt.assessmentSlug === "holland-riasec") {
       scoreResult = calculateHollandScores(Array.isArray(parsedAnswers) ? parsedAnswers : []);
+    } else if (
+      attempt.assessmentSlug === "track-classification" ||
+      attempt.assessmentSlug === "moeys_appendix_12_track_selection"
+    ) {
+      scoreResult = calculateTrackScores(parsedAnswers);
     } else {
       scoreResult = {
         scores: parsedScores,

@@ -1,0 +1,145 @@
+{
+    "test_id": "moeys_appendix_12_track_selection",
+    "title_km": "តេស្តញែកប្រភេទថ្នាក់ (ឧបសម្ព័ន្ធ ១២)",
+    "title_en": "Class/Education Track Selection Self-Assessment Test (Appendix 12)",
+    "issuer": "ក្រសួងអប់រំ យុវជន និងកីឡា (MoEYS) - នាយកដ្ឋានតម្រង់ទិសវិជ្ជាជីវៈ",
+    "target_audience": "សិស្សមធ្យមសិក្សាបឋមភូមិ (ថ្នាក់ទី៧-៩) / Lower Secondary Students (Grades 7-9)",
+    "description_km": "កម្រងតេស្តវាយតម្លៃទាំង ១៦ ក្រុមនេះ ជួយសិស្សានុសិស្សឱ្យមានមូលដ្ឋានក្នុងការសម្រេចចិត្តជ្រើសរើសប្រភេទថ្នាក់ ឬជំនាញសិក្សានៅកម្រិតមធ្យមសិក្សាទុតិយភូមិ (គន្លងវិទ្យាសាស្ត្រ គន្លងវិទ្យាសាស្ត្រសង្គម ឬគន្លងវិជ្ជាជីវៈ)។ លទ្ធផលនៃតេស្តនេះមិនតម្រូវឱ្យសិស្សត្រូវតែអនុវត្តតាមទាំងស្រុងនោះទេ ប៉ុន្តែជាត្រីវិស័យបង្ហាញផ្លូវ និងផ្តល់ប្រឹក្សាគាំទ្រផ្នែកស្មារតី។",
+    "description_en": "This 16-cluster self-assessment helps lower secondary students determine their interests and skills to choose an upper secondary education track (Science Track, Social Science Track, or Vocational/Technical Track). Results act as a guiding compass rather than a mandatory requirement.",
+    "scoring_scales": {
+        "part_a_interest": {
+            "label_km": "ក. កម្រិតចំណូលចិត្ត (ខ្ញុំចូលចិត្ត...)",
+            "label_en": "Part A: Interest Level (I like...)",
+            "options": [
+                {
+                    "value": 4,
+                    "label_km": "ខ្លាំង",
+                    "label_en": "Strongly like"
+                },
+                {
+                    "value": 3,
+                    "label_km": "មធ្យម",
+                    "label_en": "Moderately like"
+                },
+                {
+                    "value": 2,
+                    "label_km": "តិច",
+                    "label_en": "Slightly like"
+                },
+                {
+                    "value": 1,
+                    "label_km": "អត់",
+                    "label_en": "Do not like at all"
+                }
+            ],
+            "min_score": 6,
+            "max_score": 24
+        },
+        "part_b_skill": {
+            "label_km": "ខ. កម្រិតជំនាញ (ខ្ញុំអាច...)",
+            "label_en": "Part B: Skill Level (I can...)",
+            "options": [
+                {
+                    "value": 3,
+                    "label_km": "ខ្លាំង",
+                    "label_en": "Strong skill"
+                },
+                {
+                    "value": 2,
+                    "label_km": "មធ្យម",
+                    "label_en": "Moderate skill"
+                },
+                {
+                    "value": 1,
+                    "label_km": "តិច",
+                    "label_en": "Low skill"
+                },
+                {
+                    "value": 0,
+                    "label_km": "អត់",
+                    "label_en": "No skill"
+                }
+            ],
+            "min_score": 0,
+            "max_score": 30
+        }
+    },
+    "track_groups": {
+        "science": {
+            "label_km": "គន្លងវិទ្យាសាស្ត្រ",
+            "label_en": "Science Track",
+            "cluster_ids": [
+                1,
+                2,
+                8,
+                11,
+                13,
+                15,
+                16
+            ],
+            "vocational_majors": [
+                {
+                    "km": "ជំនាញអគ្គិសនី",
+                    "en": "Electricity"
+                },
+                {
+                    "km": "ជំនាញអេឡិចត្រូនិច",
+                    "en": "Electronics"
+                },
+                {
+                    "km": "ជំនាញមេកានិច",
+                    "en": "Mechanics"
+                },
+                {
+                    "km": "ជំនាញមេកាត្រូនិច",
+                    "en": "Mechatronics"
+                },
+                {
+                    "km": "ជំនាញក្សេត្រសាស្ត្រ",
+                    "en": "Agronomy"
+                },
+                {
+                    "km": "ជំនាញបសុវប្បកម្ម",
+                    "en": "Animal Husbandry"
+                },
+                {
+                    "km": "ជំនាញកុំព្យូទ័រ (ផ្នែកទន់)",
+                    "en": "Computer (Software)"
+                },
+                {
+                    "km": "ជំនាញឌីជីថលមេឌៀឌីហ្សាញ",
+                    "en": "Digital Media Design"
+                },
+                {
+                    "km": "ជំនាញកែច្នៃអាហារ",
+                    "en": "Food Processing"
+                }
+            ]
+        },
+        "social_science": {
+            "label_km": "គន្លងវិទ្យាសាស្ត្រសង្គម",
+            "label_en": "Social Science Track",
+            "cluster_ids": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                9,
+                10,
+                12,
+                14
+            ],
+            "vocational_majors": [
+                {
+                    "km": "ជំនាញគណនេយ្យ",
+                    "en": "Accounting"
+                },
+                {
+                    "km": "ជំនាញទេសចរណ៍",
+                    "en": "Tourism"
+                }
+            ]
+        }
+    }
+}

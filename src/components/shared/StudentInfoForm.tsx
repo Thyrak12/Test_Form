@@ -11,6 +11,8 @@ import {
   Smile,
   Hash,
   Calendar,
+  Check,
+  ChevronDown,
 } from "lucide-react";
 
 interface StudentInfoFormProps {
@@ -67,8 +69,8 @@ export function StudentInfoForm({
       newErrors.classSection = "សូមបញ្ចូលបន្ទប់/ថ្នាក់ (ឧ. 7A)";
     }
 
-    if (!formData.age || Number(formData.age) < 8 || Number(formData.age) > 25) {
-      newErrors.age = "សូមបញ្ចូលអាយុ (ចន្លោះពី ៨ - ២៥ ឆ្នាំ)";
+    if (!formData.age || Number(formData.age) < 10 || Number(formData.age) > 18) {
+      newErrors.age = "សូមបញ្ចូលអាយុសមស្រប (ចន្លោះពី ១០ - ១៨ ឆ្នាំ)";
     }
 
     setErrors(newErrors);
@@ -88,16 +90,21 @@ export function StudentInfoForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white rounded-xl border border-slate-200 shadow-2xs p-5 sm:p-7 space-y-6"
+      className="bg-white rounded-[28px] border-2 border-stone-200/90 shadow-[0_4px_20px_rgba(180,160,140,0.12)] p-6 sm:p-8 space-y-6"
     >
-      {/* Form Section Header */}
-      <div className="border-b border-slate-100 pb-4">
-        <h2 className="text-base sm:text-lg font-bold text-slate-900">
-          ព័ត៌មានផ្ទាល់ខ្លួនរបស់សិស្ស
-        </h2>
-        <p className="text-xs text-slate-500 mt-0.5">
-          សូមបំពេញព័ត៌មានខាងក្រោមឱ្យបានត្រឹមត្រូវ ដើម្បីរៀបចំរបាយការណ៍លទ្ធផល
-        </p>
+      {/* Form Section Header with playful badge */}
+      <div className="border-b-2 border-stone-100 pb-4 flex items-center justify-between gap-2">
+        <div>
+          <h2 className="text-base sm:text-lg font-extrabold text-[#1E293B]">
+            ព័ត៌មានផ្ទាល់ខ្លួនរបស់សិស្ស
+          </h2>
+          <p className="text-xs text-stone-500 mt-0.5">
+            សូមបំពេញព័ត៌មានខាងក្រោមឱ្យបានត្រឹមត្រូវ ដើម្បីរៀបចំរបាយការណ៍លទ្ធផល
+          </p>
+        </div>
+        <div className="hidden sm:flex w-8 h-8 rounded-full bg-[#E0F2FE] border border-[#BAE6FD] items-center justify-center text-[#0284C7] shrink-0">
+          <User className="w-4 h-4" />
+        </div>
       </div>
 
       {/* Main Student Fields */}
@@ -105,23 +112,23 @@ export function StudentInfoForm({
         {/* Row 1: Full Name & Gender */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="sm:col-span-2">
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-bold text-stone-700 mb-1.5">
               ឈ្មោះពេញសិស្ស <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <input
                 type="text"
                 required
-                placeholder="ឧទាហរណ៍៖ សុខ ចិន្តា"
+                placeholder="ឧ. សុខ ដារ៉ា"
                 value={formData.fullName}
                 onChange={(e) => {
                   setFormData({ ...formData, fullName: e.target.value });
                   if (errors.fullName) setErrors({ ...errors, fullName: "" });
                 }}
-                className={`w-full px-3.5 py-2.5 rounded-lg border text-sm transition-colors outline-hidden ${
+                className={`w-full px-3.5 py-2.5 rounded-xl border-2 text-sm transition-all outline-hidden ${
                   errors.fullName
-                    ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                    : "border-slate-300 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white"
+                    ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-100"
+                    : "border-stone-200 bg-[#FAF7F2]/40 hover:border-stone-300 focus:border-blue-600 focus:bg-white focus:ring-3 focus:ring-blue-100"
                 }`}
               />
             </div>
@@ -134,30 +141,19 @@ export function StudentInfoForm({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-bold text-stone-700 mb-1.5">
               ភេទ <span className="text-red-500">*</span>
             </label>
-            <div className="grid grid-cols-2 gap-1.5 p-1 bg-slate-100 rounded-lg border border-slate-200">
-              {[
-                { id: "M", label: "ប្រុស" },
-                { id: "F", label: "ស្រី" },
-              ].map((g) => {
-                const isSelected = formData.gender === g.id;
-                return (
-                  <button
-                    type="button"
-                    key={g.id}
-                    onClick={() => setFormData({ ...formData, gender: g.id })}
-                    className={`py-1.5 text-xs font-semibold rounded-md transition-colors cursor-pointer ${
-                      isSelected
-                        ? "bg-white text-blue-900 shadow-2xs font-bold"
-                        : "text-slate-600 hover:text-slate-900"
-                    }`}
-                  >
-                    {g.label}
-                  </button>
-                );
-              })}
+            <div className="relative">
+              <select
+                value={formData.gender}
+                onChange={(e) => setFormData({ ...formData, gender: e.target.value as "M" | "F" })}
+                className="w-full px-3.5 py-2.5 pr-10 rounded-xl border-2 border-stone-200 bg-[#FAF7F2]/40 hover:border-stone-300 focus:border-blue-600 focus:bg-white focus:ring-3 focus:ring-blue-100 text-sm font-medium transition-all outline-hidden appearance-none cursor-pointer"
+              >
+                <option value="M">ប្រុស (Male)</option>
+                <option value="F">ស្រី (Female)</option>
+              </select>
+              <ChevronDown className="w-4 h-4 text-stone-500 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
           </div>
         </div>
@@ -165,22 +161,22 @@ export function StudentInfoForm({
         {/* Row 2: School & Class Section */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="sm:col-span-2">
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-bold text-stone-700 mb-1.5">
               ឈ្មោះសាលារៀន <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               required
-              placeholder="ឧទាហរណ៍៖ អនុវិទ្យាល័យវត្តកោះ"
+              placeholder="ឧ. អនុវិទ្យាល័យវត្តកោះ"
               value={formData.schoolName}
               onChange={(e) => {
                 setFormData({ ...formData, schoolName: e.target.value });
                 if (errors.schoolName) setErrors({ ...errors, schoolName: "" });
               }}
-              className={`w-full px-3.5 py-2.5 rounded-lg border text-sm transition-colors outline-hidden ${
+              className={`w-full px-3.5 py-2.5 rounded-xl border-2 text-sm transition-all outline-hidden ${
                 errors.schoolName
-                  ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                  : "border-slate-300 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white"
+                  ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-100"
+                  : "border-stone-200 bg-[#FAF7F2]/40 hover:border-stone-300 focus:border-blue-600 focus:bg-white focus:ring-3 focus:ring-blue-100"
               }`}
             />
             {errors.schoolName && (
@@ -192,22 +188,22 @@ export function StudentInfoForm({
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-bold text-stone-700 mb-1.5">
               បន្ទប់ / ថ្នាក់ <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
               required
-              placeholder="ឧ. 7A, 7B"
+              placeholder="ឧ. ៧ក"
               value={formData.classSection}
               onChange={(e) => {
                 setFormData({ ...formData, classSection: e.target.value });
                 if (errors.classSection) setErrors({ ...errors, classSection: "" });
               }}
-              className={`w-full px-3.5 py-2.5 rounded-lg border text-sm transition-colors outline-hidden ${
+              className={`w-full px-3.5 py-2.5 rounded-xl border-2 text-sm transition-all outline-hidden ${
                 errors.classSection
-                  ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                  : "border-slate-300 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white"
+                  ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-100"
+                  : "border-stone-200 bg-[#FAF7F2]/40 hover:border-stone-300 focus:border-blue-600 focus:bg-white focus:ring-3 focus:ring-blue-100"
               }`}
             />
             {errors.classSection && (
@@ -222,41 +218,45 @@ export function StudentInfoForm({
         {/* Row 3: Grade Level & Age */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-bold text-stone-700 mb-1.5">
               កម្រិតថ្នាក់
             </label>
-            <select
-              value={formData.grade}
-              onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
-              className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-sm transition-colors outline-hidden focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
-            >
-              <option value="Grade 7">ថ្នាក់ទី ៧ (Grade 7)</option>
-              <option value="Grade 8">ថ្នាក់ទី ៨ (Grade 8)</option>
-              <option value="Grade 9">ថ្នាក់ទី ៩ (Grade 9)</option>
-              <option value="Grade 10">ថ្នាក់ទី ១០ (Grade 10)</option>
-              <option value="Grade 11">ថ្នាក់ទី ១១ (Grade 11)</option>
-              <option value="Grade 12">ថ្នាក់ទី ១២ (Grade 12)</option>
-            </select>
+            <div className="relative">
+              <select
+                value={formData.grade}
+                onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
+                className="w-full px-3.5 py-2.5 pr-10 rounded-xl border-2 border-stone-200 bg-[#FAF7F2]/40 hover:border-stone-300 focus:border-blue-600 focus:bg-white focus:ring-3 focus:ring-blue-100 text-sm font-medium transition-all outline-hidden appearance-none cursor-pointer"
+              >
+                <option value="Grade 7">ថ្នាក់ទី ៧ (Grade 7)</option>
+                <option value="Grade 8">ថ្នាក់ទី ៨ (Grade 8)</option>
+                <option value="Grade 9">ថ្នាក់ទី ៩ (Grade 9)</option>
+                <option value="Grade 10">ថ្នាក់ទី ១០ (Grade 10)</option>
+                <option value="Grade 11">ថ្នាក់ទី ១១ (Grade 11)</option>
+                <option value="Grade 12">ថ្នាក់ទី ១២ (Grade 12)</option>
+              </select>
+              <ChevronDown className="w-4 h-4 text-stone-500 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+            </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+            <label className="block text-xs font-bold text-stone-700 mb-1.5">
               អាយុ (ឆ្នាំ) <span className="text-red-500">*</span>
             </label>
             <input
               type="number"
-              min="8"
-              max="25"
+              min="10"
+              max="18"
               required
-              value={formData.age}
+              placeholder="ឧ. ១២ ឬ ១៣"
+              value={formData.age || ""}
               onChange={(e) => {
                 setFormData({ ...formData, age: Number(e.target.value) });
                 if (errors.age) setErrors({ ...errors, age: "" });
               }}
-              className={`w-full px-3.5 py-2.5 rounded-lg border text-sm transition-colors outline-hidden ${
+              className={`w-full px-3.5 py-2.5 rounded-xl border-2 text-sm transition-all outline-hidden ${
                 errors.age
-                  ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                  : "border-slate-300 focus:border-blue-600 focus:ring-1 focus:ring-blue-600 bg-white"
+                  ? "border-red-400 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-100"
+                  : "border-stone-200 bg-[#FAF7F2]/40 hover:border-stone-300 focus:border-blue-600 focus:bg-white focus:ring-3 focus:ring-blue-100"
               }`}
             />
             {errors.age && (
@@ -270,15 +270,16 @@ export function StudentInfoForm({
       </div>
 
       {/* Profile Avatar Selection (Secondary Profile Accessory) */}
-      <div className="pt-3 border-t border-slate-100">
-        <label className="block text-xs font-semibold text-slate-700 mb-1">
+      <div className="pt-3 border-t-2 border-stone-100">
+        <label className="block text-xs font-bold text-[#1E293B] mb-1">
           ជ្រើសរើសរូបតំណាងសិស្ស (Profile Icon)
         </label>
-        <p className="text-[11px] text-slate-500 mb-3">
+        <p className="text-[11px] text-stone-500 mb-3">
           រូបតំណាងនេះនឹងបង្ហាញនៅលើក្បាលទំព័រនៃរបាយការណ៍លទ្ធផលរបស់អ្នក
         </p>
 
-        <div className="grid grid-cols-4 sm:grid-cols-8 gap-2">
+        {/* 4-column x 2-row grid to prevent any text truncation */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
           {AVATAR_LIST.map((av) => {
             const isSelected = formData.avatar === av.id;
             return (
@@ -286,16 +287,23 @@ export function StudentInfoForm({
                 type="button"
                 key={av.id}
                 onClick={() => setFormData({ ...formData, avatar: av.id })}
-                className={`flex flex-col items-center gap-1 p-2 rounded-lg border transition-all cursor-pointer ${
+                className={`relative flex items-center gap-2.5 p-2.5 rounded-2xl border-2 transition-all cursor-pointer text-left ${
                   isSelected
-                    ? "border-blue-600 bg-blue-50/60 ring-1 ring-blue-600"
-                    : "border-slate-200 bg-slate-50/50 hover:bg-white hover:border-slate-300"
+                    ? "border-blue-600 bg-blue-50/80 shadow-xs ring-2 ring-blue-100"
+                    : "border-stone-200 bg-[#FAF7F2]/60 hover:bg-white hover:border-stone-300"
                 }`}
               >
-                <span className="text-xl select-none">{av.emoji}</span>
+                {/* Active Choice Checkmark Badge */}
+                {isSelected && (
+                  <span className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-xs">
+                    <Check className="w-3 h-3 stroke-[3]" />
+                  </span>
+                )}
+
+                <span className="text-2xl select-none shrink-0">{av.emoji}</span>
                 <span
-                  className={`text-[10px] truncate max-w-full font-medium ${
-                    isSelected ? "text-blue-900 font-semibold" : "text-slate-500"
+                  className={`text-xs font-bold leading-snug break-words ${
+                    isSelected ? "text-blue-900" : "text-[#1E293B]"
                   }`}
                 >
                   {av.nameKh}
@@ -316,10 +324,10 @@ export function StudentInfoForm({
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-2xs disabled:opacity-60"
+          className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-sm rounded-full border-2 border-blue-500/80 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/25 disabled:opacity-60 active:scale-98"
         >
           {isLoading ? (
-            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
           ) : (
             <>
               <span>{submitButtonText}</span>

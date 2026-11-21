@@ -143,43 +143,59 @@ export default function HollandRiasecTestPage() {
     <AssessmentLayout>
       <StepProgressHeader currentStep={2} />
 
-      <div className="max-w-2xl mx-auto space-y-4">
+      <div className="w-full max-w-3xl mx-auto space-y-4">
         {/* Sticky Header: Student identity & Page Progress */}
-        <div className="sticky top-18 z-20 bg-white/95 backdrop-blur-md rounded-xl p-3.5 sm:p-4 border border-slate-200 shadow-2xs">
-          <div className="flex items-center justify-between gap-3 mb-2.5">
+        <div className="sticky top-18 z-20 bg-white/95 backdrop-blur-md rounded-[24px] p-4 sm:p-5 border-2 border-stone-200/90 shadow-[0_4px_16px_rgba(180,160,140,0.12)]">
+          <div className="flex items-center justify-between gap-3 mb-3">
             {/* Student Info */}
-            <div className="flex items-center gap-2.5 min-w-0">
+            <div className="flex items-center gap-3 min-w-0">
               <StudentAvatar avatarId={student.avatar} size="sm" />
               <div className="min-w-0">
-                <span className="text-xs sm:text-sm font-bold text-slate-900 block truncate">
+                <span className="text-xs sm:text-sm font-extrabold text-[#1E293B] block truncate">
                   {student.fullName}
                 </span>
-                <span className="text-[11px] text-slate-500 block truncate">
+                <span className="text-[11px] text-stone-500 font-medium block truncate">
                   ថ្នាក់ {student.classSection} • {student.schoolName}
                 </span>
               </div>
             </div>
 
             {/* Answered Count Badge */}
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-blue-50 text-blue-800 text-xs font-semibold border border-blue-200 shrink-0">
-              <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E0F2FE] text-[#0369A1] text-xs font-bold border border-[#BAE6FD] shrink-0">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#0284C7]" />
               <span>បានគូស {checkedIds.length}/48</span>
             </div>
           </div>
 
-          {/* Progress Track */}
-          <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-blue-600 transition-all duration-300"
-              style={{ width: `${progressPercent}%` }}
-            />
+          {/* Segmented Progress Track (4 segmented bars for 4 pages) */}
+          <div className="grid grid-cols-4 gap-1.5 mb-2.5">
+            {Array.from({ length: TOTAL_PAGES }).map((_, pIdx) => {
+              const isFilled = pIdx <= currentPage;
+              const isCurrent = pIdx === currentPage;
+              return (
+                <div
+                  key={pIdx}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    isCurrent
+                      ? "bg-blue-600 ring-2 ring-blue-200"
+                      : isFilled
+                      ? "bg-blue-500"
+                      : "bg-stone-200/80"
+                  }`}
+                  title={`ទំព័រទី ${pIdx + 1}`}
+                />
+              );
+            })}
           </div>
 
-          <div className="flex items-center justify-between text-[11px] text-slate-500 mt-2">
-            <span>
-              ទំព័រ {currentPage + 1}/{TOTAL_PAGES} (សំណួរ {startIndex + 1} ដល់ {Math.min(endIndex, allQuestions.length)})
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-stone-600 gap-1">
+            <span className="font-extrabold text-[#1E293B]">
+              ទំព័រ {currentPage + 1}/{TOTAL_PAGES}{" "}
+              <span className="text-stone-500 font-normal">
+                (សំណួរ {startIndex + 1} ដល់ {Math.min(endIndex, allQuestions.length)})
+              </span>
             </span>
-            <span className="text-slate-600 font-medium">
+            <span className="text-stone-600 font-medium text-[11px] sm:text-xs">
               គូស (✓) ចំពោះសកម្មភាពដែលអ្នកចូលចិត្ត
             </span>
           </div>
@@ -187,14 +203,14 @@ export default function HollandRiasecTestPage() {
 
         {/* Error Alert */}
         {errorMessage && (
-          <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-800 text-xs flex items-start gap-2">
+          <div className="p-3.5 rounded-2xl bg-red-50 border-2 border-red-200 text-red-800 text-xs flex items-start gap-2">
             <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
             <div>{errorMessage}</div>
           </div>
         )}
 
         {/* Question Cards Checklist */}
-        <div className="space-y-2.5">
+        <div className="space-y-3">
           {currentQuestions.map((question, idx) => (
             <QuestionChecklistCard
               key={question.id}
@@ -206,56 +222,63 @@ export default function HollandRiasecTestPage() {
           ))}
         </div>
 
-        {/* Navigation Actions */}
-        <div className="pt-3 pb-12 flex items-center justify-between gap-3">
-          {currentPage > 0 ? (
-            <button
-              type="button"
-              onClick={() => handlePageChange(currentPage - 1)}
-              className="px-4 py-2.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs sm:text-sm transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>ត្រឡប់ក្រោយ</span>
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => router.push("/assessments/holland-riasec")}
-              className="px-3 py-2 text-slate-500 hover:text-slate-800 text-xs font-medium transition-colors cursor-pointer"
-            >
-              ← កែសម្រួលព័ត៌មាន
-            </button>
-          )}
+        {/* Navigation Actions & Gentle Reassurance Note */}
+        <div className="pt-4 pb-12 flex flex-col gap-3">
+          <div className="flex items-center justify-between gap-3">
+            {currentPage > 0 ? (
+              <button
+                type="button"
+                onClick={() => handlePageChange(currentPage - 1)}
+                className="px-4 py-2.5 rounded-full border-2 border-stone-200 bg-white hover:bg-stone-50 active:bg-stone-100 text-stone-700 font-bold text-xs sm:text-sm transition-all flex items-center gap-1.5 cursor-pointer shadow-xs active:scale-95"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>ត្រឡប់ក្រោយ</span>
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => router.push("/assessments/holland-riasec")}
+                className="px-4 py-2.5 rounded-full border-2 border-stone-200 bg-white hover:bg-stone-50 active:bg-stone-100 text-stone-600 hover:text-stone-900 font-bold text-xs sm:text-sm transition-all flex items-center gap-1.5 cursor-pointer shadow-xs active:scale-95"
+              >
+                <span>← កែសម្រួលព័ត៌មាន</span>
+              </button>
+            )}
 
-          {currentPage < TOTAL_PAGES - 1 ? (
-            <button
-              type="button"
-              onClick={() => handlePageChange(currentPage + 1)}
-              className="px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs sm:text-sm transition-colors flex items-center gap-2 cursor-pointer shadow-2xs"
-            >
-              <span>ទំព័របន្ទាប់</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          ) : (
-            <button
-              type="button"
-              disabled={isSubmitting}
-              onClick={handleSubmit}
-              className="px-5 py-2.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs sm:text-sm transition-colors flex items-center gap-2 cursor-pointer shadow-2xs disabled:opacity-60"
-            >
-              {isSubmitting ? (
-                <>
-                  <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                  <span>កំពុងគណនា...</span>
-                </>
-              ) : (
-                <>
-                  <span>បញ្ចប់ និងមើលរបាយការណ៍</span>
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                </>
-              )}
-            </button>
-          )}
+            {currentPage < TOTAL_PAGES - 1 ? (
+              <button
+                type="button"
+                onClick={() => handlePageChange(currentPage + 1)}
+                className="px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-xs sm:text-sm transition-all flex items-center gap-2 cursor-pointer shadow-md shadow-blue-500/20 active:scale-95"
+              >
+                <span>ទំព័របន្ទាប់</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            ) : (
+              <button
+                type="button"
+                disabled={isSubmitting}
+                onClick={handleSubmit}
+                className="px-6 py-2.5 rounded-full bg-blue-700 hover:bg-blue-800 active:bg-blue-900 text-white font-bold text-xs sm:text-sm transition-all flex items-center gap-2 cursor-pointer shadow-md shadow-blue-600/25 active:scale-95 disabled:opacity-60"
+              >
+                {isSubmitting ? (
+                  <>
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    <span>កំពុងគណនា...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>បញ្ចប់ និងមើលរបាយការណ៍</span>
+                    <CheckCircle2 className="w-4 h-4" />
+                  </>
+                )}
+              </button>
+            )}
+          </div>
+
+          {/* Gentle Reassurance Note */}
+          <p className="text-center text-[11px] sm:text-xs text-stone-500 font-medium">
+            💡 អាចចុចបន្តទៅមុខបាន ទោះបីជាក្នុងទំព័រនេះគ្មានសកម្មភាពណាដែលអ្នកចូលចិត្តក៏ដោយ
+          </p>
         </div>
       </div>
     </AssessmentLayout>

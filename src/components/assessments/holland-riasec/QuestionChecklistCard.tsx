@@ -32,18 +32,18 @@ export function QuestionChecklistCard({
           onToggle(question.id);
         }
       }}
-      className={`group relative p-3.5 sm:p-4 rounded-lg border transition-colors duration-150 cursor-pointer select-none flex items-center gap-3 sm:gap-3.5 ${
+      className={`group relative p-4 rounded-2xl border-2 transition-all duration-200 cursor-pointer select-none flex items-center gap-3.5 sm:gap-4 ${
         isChecked
-          ? "bg-blue-50/60 border-blue-400 shadow-2xs"
-          : "bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50/70"
+          ? "bg-blue-50/70 border-blue-500 shadow-xs ring-1 ring-blue-200"
+          : "bg-white border-stone-200 hover:border-stone-300 hover:bg-[#FAF7F2]/60 hover:shadow-2xs"
       }`}
     >
       {/* Question Number Badge */}
       <span
-        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-md shrink-0 flex items-center justify-center font-mono text-xs font-semibold transition-colors ${
+        className={`w-8 h-8 rounded-full shrink-0 flex items-center justify-center font-mono text-xs font-bold transition-all ${
           isChecked
-            ? "bg-blue-100 text-blue-900 border border-blue-200"
-            : "bg-slate-100 text-slate-500 border border-slate-200"
+            ? "bg-blue-600 text-white shadow-2xs"
+            : "bg-[#FAF7F2] text-stone-500 border border-stone-300"
         }`}
       >
         {formattedIndex}
@@ -54,23 +54,23 @@ export function QuestionChecklistCard({
         <p
           className={`text-xs sm:text-sm leading-relaxed khmer-content transition-colors ${
             isChecked
-              ? "text-blue-950 font-semibold"
-              : "text-slate-700 font-normal group-hover:text-slate-900"
+              ? "text-blue-950 font-bold"
+              : "text-[#1E293B] font-normal group-hover:text-black"
           }`}
         >
           {question.textKh}
         </p>
       </div>
 
-      {/* Standard Accessible Checkbox */}
+      {/* Softly Rounded Square Checkbox (24px x 24px) */}
       <div
-        className={`w-5 h-5 rounded-md shrink-0 flex items-center justify-center transition-all ${
+        className={`w-6 h-6 rounded-lg shrink-0 flex items-center justify-center transition-all ${
           isChecked
-            ? "bg-blue-600 border border-blue-600 text-white shadow-2xs"
-            : "border-2 border-slate-300 group-hover:border-slate-400 bg-white"
+            ? "bg-blue-600 border-2 border-blue-600 text-white shadow-2xs scale-105"
+            : "border-2 border-stone-300 group-hover:border-stone-400 bg-white"
         }`}
       >
-        {isChecked && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+        {isChecked && <Check className="w-4 h-4 stroke-[3]" />}
       </div>
     </div>
   );

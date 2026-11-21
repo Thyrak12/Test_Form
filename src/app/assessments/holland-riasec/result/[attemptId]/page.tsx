@@ -101,65 +101,21 @@ function ResultContent({ params }: ResultPageProps) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-5 pb-12">
-      {/* Official Action Toolbar (Print, Share, Retake) */}
-      <div className="flex flex-wrap items-center justify-between gap-3 no-print bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs">
-        <div className="flex items-center gap-2">
-          <FileCheck2 className="w-4 h-4 text-blue-700" />
-          <span className="text-xs sm:text-sm font-bold text-slate-900">
-            របាយការណ៍លទ្ធផលវាយតម្លៃ Holland RIASEC
-          </span>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={handlePrint}
-            className="px-3.5 py-1.5 rounded-lg bg-blue-700 hover:bg-blue-800 text-white font-semibold text-xs transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
-          >
-            <Printer className="w-3.5 h-3.5" />
-            <span>បោះពុម្ព / រក្សាទុក PDF</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={handleCopyLink}
-            className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-200 transition-colors flex items-center gap-1.5 cursor-pointer"
-          >
-            {copied ? (
-              <>
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="text-emerald-700 font-semibold">បានចម្លងតំណភ្ជាប់!</span>
-              </>
-            ) : (
-              <>
-                <Share2 className="w-3.5 h-3.5 text-slate-500" />
-                <span>ចែករំលែក</span>
-              </>
-            )}
-          </button>
-
-          <Link
-            href="/assessments/holland-riasec"
-            className="px-3 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-200 transition-colors flex items-center gap-1.5"
-          >
-            <RotateCcw className="w-3.5 h-3.5 text-slate-500" />
-            <span>ធ្វើតេស្តថ្មី</span>
-          </Link>
-        </div>
-      </div>
-
-      {/* 1. Student Dossier Header & Primary Holland Result */}
+    <div className="w-full max-w-4xl mx-auto space-y-5 pb-12">
+      {/* 1. Merged Student Dossier Header, Actions & Primary Holland Result */}
       <HollandCodeBanner
         student={student}
         scoreResult={scoreResult}
         createdAt={createdAt}
+        onPrint={handlePrint}
+        onCopyLink={handleCopyLink}
+        copied={copied}
       />
 
-      {/* 2. Comparative RIASEC Score Distribution Chart */}
+      {/* 2. Comparative RIASEC Score Distribution Chart with Hexagon Radar */}
       <RiasecScoreChart scoreResult={scoreResult} />
 
-      {/* 3. Career & Educational Guidance Guide */}
+      {/* 3. Career & Educational Guidance Guide + Grade 8 Pathway Recommendation */}
       <PersonalityLetterGuide scoreResult={scoreResult} />
     </div>
   );

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   GraduationCap,
   ArrowRight,
@@ -12,19 +13,50 @@ import { AVAILABLE_ASSESSMENTS } from "@/lib/assessments/registry";
 
 export default function AssessmentsHubPage() {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#FAF7F2] text-[#1E293B] flex flex-col font-sans relative selection:bg-[#E0F2FE] selection:text-[#0369A1]">
+      {/* Background Subtle Storybook Doodles (Scrolls naturally with content) */}
+      <div className="absolute inset-0 pointer-events-none -z-0 overflow-hidden opacity-35 select-none">
+        <svg className="absolute top-12 left-6 w-8 h-8 text-amber-400 rotate-12" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
+        </svg>
+        <svg className="absolute top-48 right-8 w-7 h-7 text-blue-400 -rotate-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 2L11 13" />
+          <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+        </svg>
+        <svg className="absolute top-[420px] left-10 w-8 h-8 text-emerald-400 rotate-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22v-9" />
+          <path d="M12 13c0-4.5 3.5-7 8-7 0 4.5-2.5 8-7 8" />
+          <path d="M12 15c0-4-3-6-7-6 0 4 2 7 7 7" />
+        </svg>
+        <svg className="absolute top-[680px] right-12 w-6 h-6 text-purple-400 rotate-45" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z" />
+        </svg>
+        <svg className="absolute top-[960px] left-8 w-7 h-7 text-amber-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+          <path d="M9 18h6" />
+          <path d="M10 22h4" />
+          <path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6h8c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z" />
+        </svg>
+      </div>
+
       {/* Header */}
-      <header className="border-b border-slate-200 bg-white sticky top-0 z-30">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <header className="border-b-2 border-stone-200/90 bg-[#FAF7F2]/95 backdrop-blur-md sticky top-0 z-30">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 sm:h-18 flex items-center justify-between relative z-10">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-lg bg-blue-700 text-white flex items-center justify-center shadow-xs group-hover:bg-blue-800 transition-colors">
-              <GraduationCap className="w-5 h-5" />
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden bg-white border-2 border-stone-300 shadow-2xs flex items-center justify-center shrink-0 ring-4 ring-amber-100/60 group-hover:scale-105 transition-transform">
+              <Image
+                src="/logo.png"
+                alt="Personality Test Logo"
+                width={44}
+                height={44}
+                className="w-full h-full object-contain p-0.5"
+                priority
+              />
             </div>
             <div>
-              <span className="font-bold text-slate-900 text-sm sm:text-base block leading-tight">
+              <span className="font-extrabold text-[#1E293B] text-sm sm:text-base block leading-tight">
                 កម្រងតេស្តវាយតម្លៃសិស្ស
               </span>
-              <span className="text-[11px] text-slate-500 font-normal">
+              <span className="text-[10px] sm:text-[11px] text-stone-500 font-medium">
                 Student Assessment Hub
               </span>
             </div>
@@ -32,7 +64,7 @@ export default function AssessmentsHubPage() {
 
           <Link
             href="/"
-            className="text-xs font-medium text-slate-600 hover:text-slate-900 px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-colors"
+            className="text-xs font-bold text-stone-700 hover:text-[#1E293B] px-4 py-2 rounded-full border-2 border-stone-300 bg-white hover:bg-stone-50 shadow-2xs transition-all active:scale-95"
           >
             ← ទំព័រដើម
           </Link>
@@ -40,124 +72,124 @@ export default function AssessmentsHubPage() {
       </header>
 
       {/* Main Hub Content */}
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8">
+      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8 relative z-10">
         {/* Title & Introduction */}
-        <div className="text-center space-y-2 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-medium">
-            <Compass className="w-3.5 h-3.5 text-blue-700" />
+        <div className="text-center space-y-2 max-w-2xl mx-auto relative px-4">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E8E5F7] border-2 border-[#C7D2FE] text-[#4338CA] text-xs font-bold mb-1 shadow-2xs">
+            <Compass className="w-3.5 h-3.5 text-[#4f46e5]" />
             <span>ជ្រើសរើសតេស្តតាមកម្រិតថ្នាក់សិក្សា</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1E293B] tracking-tight">
             កម្រងតេស្តវាយតម្លៃ និងតម្រង់ទិស
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 khmer-content leading-relaxed">
+          <p className="text-xs sm:text-sm text-stone-600 khmer-content leading-relaxed">
             សូមជ្រើសរើសកម្រងតេស្តសមស្របទៅតាមកម្រិតថ្នាក់របស់អ្នក
             ដើម្បីស្វែងយល់ពីចំណុចខ្លាំង ចំណង់ចំណូលចិត្ត និងការរៀបចំផែនការសិក្សានាពេលអនាគត។
           </p>
         </div>
 
         {/* Assessment Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* Test 1: Grade 7 Holland RIASEC */}
-          <div className="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-2xs hover:shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between">
-            <div className="space-y-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {/* Holland RIASEC Assessment Card */}
+          <div className="bg-white rounded-[28px] border-2 border-[#BAE6FD] hover:border-[#7DD3FC] p-6 sm:p-7 shadow-[0_4px_20px_rgba(180,160,140,0.15)] hover:shadow-[0_8px_28px_rgba(180,160,140,0.22)] transition-all flex flex-col justify-between group">
+            <div className="space-y-4">
               <div className="flex items-center justify-between gap-2">
-                <span className="px-2.5 py-1 rounded-md bg-blue-50 text-blue-800 text-xs font-semibold border border-blue-200">
-                  ថ្នាក់ទី ៧ (Grade 7)
+                <span className="px-3 py-1 rounded-full bg-[#E0F2FE] text-[#0369A1] text-xs font-bold border-2 border-[#BAE6FD]">
+                  ថ្នាក់ទី ៧ • RIASEC
                 </span>
-                <span className="text-[11px] text-slate-400 font-mono">
-                  តេស្តទី ១
-                </span>
+                <div className="w-9 h-9 rounded-full bg-[#E0F2FE] border border-[#BAE6FD] flex items-center justify-center text-[#0284C7] shadow-2xs group-hover:scale-105 transition-transform">
+                  <Compass className="w-4.5 h-4.5" />
+                </div>
               </div>
 
               <div>
-                <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
+                <h2 className="text-lg sm:text-xl font-extrabold text-[#1E293B] leading-snug group-hover:text-blue-700 transition-colors">
                   តេស្តស្វែងយល់ពីខ្លួនឯង Holland RIASEC
                 </h2>
-                <p className="text-[11px] text-slate-500 font-medium">
+                <p className="text-[11px] text-stone-500 font-medium mt-0.5">
                   Holland Career RIASEC Assessment
                 </p>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed khmer-content">
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed khmer-content">
                 ការវាយតម្លៃចំណង់ចំណូលចិត្ត និងបុគ្គលិកលក្ខណៈ ៤៨ សំណួរ ដើម្បីស្វែងរកកូដ Holland និងទិសដៅអាជីពសមស្រប។
               </p>
 
-              <div className="pt-2 border-t border-slate-100 grid grid-cols-3 gap-1 text-[11px] text-slate-600 text-center">
-                <div className="bg-slate-50 p-2 rounded-md">
-                  <Clock className="w-3.5 h-3.5 text-slate-400 mx-auto mb-1" />
-                  <span>៥ - ១០ នាទី</span>
+              <div className="pt-2 grid grid-cols-3 gap-2 py-3 px-2 bg-[#FAF7F2] rounded-2xl border border-stone-200/80 text-xs text-stone-700 text-center">
+                <div className="flex flex-col items-center justify-center">
+                  <Clock className="w-3.5 h-3.5 text-amber-600 mb-1" />
+                  <span className="font-extrabold text-[#1E293B] text-[11px]">៥ - ១០ នាទី</span>
                 </div>
-                <div className="bg-slate-50 p-2 rounded-md">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-slate-400 mx-auto mb-1" />
-                  <span>៤៨ សំណួរ</span>
+                <div className="flex flex-col items-center justify-center border-x-2 border-stone-200/70 px-1">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 mb-1" />
+                  <span className="font-extrabold text-[#1E293B] text-[11px]">៤៨ សំណួរ</span>
                 </div>
-                <div className="bg-slate-50 p-2 rounded-md">
-                  <FileText className="w-3.5 h-3.5 text-slate-400 mx-auto mb-1" />
-                  <span>Holland Code</span>
+                <div className="flex flex-col items-center justify-center">
+                  <FileText className="w-3.5 h-3.5 text-indigo-600 mb-1" />
+                  <span className="font-extrabold text-[#1E293B] text-[11px]">Holland Code</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-5">
+            <div className="pt-6">
               <Link
                 href="/assessments/holland-riasec"
-                className="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-2xs"
+                className="w-full py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-md shadow-blue-500/20 hover:shadow-lg"
               >
-                <span>ចាប់ផ្តើមធ្វើតេស្តថ្នាក់ទី ៧</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>ចាប់ផ្តើមធ្វើតេស្តឥឡូវនេះ</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
 
-          {/* Test 2: Grade 8 Interest Assessment */}
-          <div className="bg-white rounded-xl border border-slate-200 p-5 sm:p-6 shadow-2xs hover:shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between">
-            <div className="space-y-3">
+          {/* Track Classification Assessment Card (MoEYS Appendix 12) */}
+          <div className="bg-white rounded-[28px] border-2 border-[#FED7AA] hover:border-[#FDBA74] p-6 sm:p-7 shadow-[0_4px_20px_rgba(180,160,140,0.15)] hover:shadow-[0_8px_28px_rgba(180,160,140,0.22)] transition-all flex flex-col justify-between group">
+            <div className="space-y-4">
               <div className="flex items-center justify-between gap-2">
-                <span className="px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-800 text-xs font-semibold border border-emerald-200">
-                  ថ្នាក់ទី ៨ (Grade 8)
+                <span className="px-3 py-1 rounded-full bg-[#FCEAD4] text-[#C2410C] text-xs font-bold border-2 border-[#FED7AA]">
+                  ថ្នាក់ទី ៩ ឡើងទី ១០ • ឧបសម្ព័ន្ធ ១២
                 </span>
-                <span className="text-[11px] text-slate-400 font-mono">
-                  តេស្តទី ២
-                </span>
+                <div className="w-9 h-9 rounded-full bg-[#FCEAD4] border border-[#FED7AA] flex items-center justify-center text-[#EA580C] shadow-2xs group-hover:scale-105 transition-transform">
+                  <Layers className="w-4.5 h-4.5" />
+                </div>
               </div>
 
               <div>
-                <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
-                  តេស្តវាយតម្លៃខ្លួនឯង អំពីចំណង់ចំណូលចិត្ត
+                <h2 className="text-lg sm:text-xl font-extrabold text-[#1E293B] leading-snug group-hover:text-amber-700 transition-colors">
+                  តេស្តញែកប្រភេទថ្នាក់ (MoEYS)
                 </h2>
-                <p className="text-[11px] text-slate-500 font-medium">
-                  Grade 8 Interest Assessment (Groups A, B, C)
+                <p className="text-[11px] text-stone-500 font-medium mt-0.5">
+                  Class & Track Selection Assessment (Science / Social Science)
                 </p>
               </div>
 
-              <p className="text-xs text-slate-600 leading-relaxed khmer-content">
-                ការវាយតម្លៃចំណង់ចំណូលចិត្ត ៩០ សំណួរ បែងចែកជា ៣ កម្រង (ក, ខ, គ) ដើម្បីកំណត់គន្លងសិក្សា និងវិជ្ជាជីវៈសមស្រប។
+              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed khmer-content">
+                កម្រងតេស្តវាយតម្លៃ ១៦ ក្រុមជំនាញ (កម្រិតចំណូលចិត្ត និងជំនាញជាក់ស្តែង) ដើម្បីជួយសិស្សកំណត់គន្លងសិក្សាថ្នាក់ទី ១០។
               </p>
 
-              <div className="pt-2 border-t border-slate-100 grid grid-cols-3 gap-1 text-[11px] text-slate-600 text-center">
-                <div className="bg-slate-50 p-2 rounded-md">
-                  <Clock className="w-3.5 h-3.5 text-slate-400 mx-auto mb-1" />
-                  <span>១០ - ១៥ នាទី</span>
+              <div className="pt-2 grid grid-cols-3 gap-2 py-3 px-2 bg-[#FAF7F2] rounded-2xl border border-stone-200/80 text-xs text-stone-700 text-center">
+                <div className="flex flex-col items-center justify-center">
+                  <Clock className="w-3.5 h-3.5 text-amber-600 mb-1" />
+                  <span className="font-extrabold text-[#1E293B] text-[11px]">១៥ - ២០ នាទី</span>
                 </div>
-                <div className="bg-slate-50 p-2 rounded-md">
-                  <Layers className="w-3.5 h-3.5 text-slate-400 mx-auto mb-1" />
-                  <span>៩០ សំណួរ (៣ កម្រង)</span>
+                <div className="flex flex-col items-center justify-center border-x-2 border-stone-200/70 px-1">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 mb-1" />
+                  <span className="font-extrabold text-[#1E293B] text-[11px]">១៦ ក្រុម</span>
                 </div>
-                <div className="bg-slate-50 p-2 rounded-md">
-                  <FileText className="w-3.5 h-3.5 text-slate-400 mx-auto mb-1" />
-                  <span>គន្លងសិក្សា</span>
+                <div className="flex flex-col items-center justify-center">
+                  <FileText className="w-3.5 h-3.5 text-indigo-600 mb-1" />
+                  <span className="font-extrabold text-[#1E293B] text-[11px]">គន្លងថ្នាក់ទី ១០</span>
                 </div>
               </div>
             </div>
 
-            <div className="pt-5">
+            <div className="pt-6">
               <Link
-                href="/assessments/interest-grade-8"
-                className="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-2xs"
+                href="/assessments/track-classification"
+                className="w-full py-2.5 rounded-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 active:scale-98 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-md shadow-amber-500/20 hover:shadow-lg"
               >
-                <span>ចាប់ផ្តើមធ្វើតេស្តថ្នាក់ទី ៨</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>ចាប់ផ្តើមតេស្តញែកប្រភេទថ្នាក់</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
@@ -165,15 +197,16 @@ export default function AssessmentsHubPage() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-slate-200 bg-white py-5 text-center text-xs text-slate-500">
-        <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2.5">
-          <p className="text-slate-600">
-            ប្រព័ន្ធវាយតម្លៃ និងតម្រង់ទិសអាជីពសិស្ស
+      <footer className="mt-auto border-t-2 border-stone-200/90 bg-white py-6 pb-16 sm:pb-6 text-xs text-stone-500 relative z-10">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-stone-700 font-medium text-center sm:text-left">
+            ប្រព័ន្ធវាយតម្លៃចំណង់ចំណូលចិត្ត និងការតម្រង់ទិសអាជីពសិស្ស
           </p>
-          <div className="flex items-center gap-4 text-slate-400">
+          <div className="flex items-center gap-4 text-stone-500">
             <span>© 2026-2027</span>
-            <Link href="/admin" className="hover:text-slate-600 underline underline-offset-2">
-              ផ្នែកគ្រប់គ្រង
+            <span>•</span>
+            <Link href="/admin" className="hover:text-stone-800 underline underline-offset-2 font-medium">
+              ផ្នែកគ្រប់គ្រង (Admin)
             </Link>
           </div>
         </div>

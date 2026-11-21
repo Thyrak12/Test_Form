@@ -8,11 +8,13 @@ export type AssessmentStep = 1 | 2 | 3;
 interface StepProgressHeaderProps {
   currentStep: AssessmentStep;
   className?: string;
+  step2Sublabel?: string;
 }
 
 export function StepProgressHeader({
   currentStep,
   className = "",
+  step2Sublabel = "48 Questions",
 }: StepProgressHeaderProps) {
   const steps = [
     {
@@ -23,7 +25,7 @@ export function StepProgressHeader({
     {
       step: 2 as const,
       label: "សំណួរវាយតម្លៃ",
-      sublabel: "48 Questions",
+      sublabel: step2Sublabel,
     },
     {
       step: 3 as const,
@@ -38,10 +40,10 @@ export function StepProgressHeader({
       className={`w-full max-w-2xl mx-auto mb-6 no-print ${className}`}
     >
       <div className="relative">
-        {/* Background Connecting Bar */}
-        <div className="absolute left-7 right-7 top-4 -translate-y-1/2 h-0.5 bg-slate-200 z-0">
+        {/* Background Connecting Bar (Constrained exactly from center of step 1 to center of step 3) */}
+        <div className="absolute left-[16.667%] right-[16.667%] top-4 -translate-y-1/2 h-1 bg-stone-200/90 rounded-full z-0 pointer-events-none overflow-hidden">
           <div
-            className="h-full bg-blue-600 transition-all duration-300 ease-out"
+            className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full transition-all duration-300 ease-out shadow-xs"
             style={{
               width:
                 currentStep === 1
@@ -53,8 +55,8 @@ export function StepProgressHeader({
           />
         </div>
 
-        {/* Steps */}
-        <div className="relative z-10 flex items-start justify-between">
+        {/* Steps (3 evenly distributed columns) */}
+        <div className="relative z-10 grid grid-cols-3">
           {steps.map((item) => {
             const isCompleted = item.step < currentStep;
             const isCurrent = item.step === currentStep;
@@ -66,12 +68,12 @@ export function StepProgressHeader({
               >
                 {/* Step Circle Indicator */}
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold text-xs transition-all select-none border-2 ${
+                  className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-all select-none border-2 shadow-2xs ${
                     isCompleted
                       ? "bg-blue-600 border-blue-600 text-white"
                       : isCurrent
-                      ? "bg-white border-blue-600 text-blue-700 ring-4 ring-blue-50"
-                      : "bg-white border-slate-300 text-slate-400"
+                      ? "bg-white border-blue-600 text-blue-700 ring-4 ring-blue-100"
+                      : "bg-[#FAF7F2] border-stone-300 text-stone-400"
                   }`}
                 >
                   {isCompleted ? (
@@ -84,23 +86,23 @@ export function StepProgressHeader({
                 {/* Step Labels */}
                 <div className="mt-2 flex flex-col items-center">
                   <span
-                    className={`text-xs font-semibold leading-tight ${
+                    className={`text-xs font-bold leading-tight ${
                       isCurrent
-                        ? "text-blue-900"
+                        ? "text-blue-800"
                         : isCompleted
-                        ? "text-slate-800"
-                        : "text-slate-400"
+                        ? "text-[#1E293B]"
+                        : "text-stone-400"
                     }`}
                   >
                     {item.label}
                   </span>
                   <span
-                    className={`text-[10px] font-normal hidden sm:block ${
+                    className={`text-[10px] font-medium hidden sm:block ${
                       isCurrent
                         ? "text-blue-600"
                         : isCompleted
-                        ? "text-slate-500"
-                        : "text-slate-400"
+                        ? "text-stone-500"
+                        : "text-stone-400"
                     }`}
                   >
                     {item.sublabel}

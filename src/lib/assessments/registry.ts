@@ -17,15 +17,15 @@ export const AVAILABLE_ASSESSMENTS: AssessmentMeta[] = [
     isActive: true,
   },
   {
-    slug: "interest-grade-8",
-    titleKh: "តេស្តវាយតម្លៃខ្លួនឯង អំពីចំណង់ចំណូលចិត្ត",
-    titleEn: "Grade 8 Interest Assessment (Groups A, B, C)",
+    slug: "track-classification",
+    titleKh: "តេស្តញែកប្រភេទថ្នាក់ (ឧបសម្ព័ន្ធ ១២)",
+    titleEn: "Class Track Selection Assessment (Appendix 12)",
     descriptionKh:
-      "ការវាយតម្លៃចំណង់ចំណូលចិត្ត ៩០ សំណួរ បែងចែកជា ៣ កម្រង (ក, ខ, គ) ដើម្បីកំណត់គន្លងសិក្សា និងវិជ្ជាជីវៈសមស្រប។",
-    targetAudience: "សម្រាប់សិស្សថ្នាក់ទី ៨",
-    estimatedMinutes: 15,
-    questionCount: 90,
-    route: "/assessments/interest-grade-8",
+      "កម្រងតេស្តវាយតម្លៃ ១៦ ក្រុមជំនាញ និងចំណូលចិត្ត ដើម្បីជួយសិស្សកំណត់គន្លងវិទ្យាសាស្ត្រ វិទ្យាសាស្ត្រសង្គម ឬវិជ្ជាជីវៈ នៅថ្នាក់ទី ១០។",
+    targetAudience: "សម្រាប់សិស្សថ្នាក់ទី ៩ ឡើងទី ១០",
+    estimatedMinutes: 20,
+    questionCount: 256,
+    route: "/assessments/track-classification",
     isActive: true,
   },
 ];
