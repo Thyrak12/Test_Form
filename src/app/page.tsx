@@ -155,22 +155,24 @@ export default function Home() {
                   ឧបករណ៍វាយតម្លៃបែបវិទ្យាសាស្ត្រ និងចិត្តវិទ្យាអប់រំ ជួយសិស្សានុសិស្សក្នុងការស្វែងយល់ពីបុគ្គលិកលក្ខណៈ ចំណង់ចំណូលចិត្តការងារ និងការជ្រើសរើសគន្លងសិក្សាឱ្យបានច្បាស់លាស់។
                 </p>
 
-                {/* Bouncy Pastel Pill CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md mb-6">
+                {/* Horizontal CTA Buttons (Stay side-by-side in one line, responsive labels) */}
+                <div className="flex flex-row gap-2 sm:gap-3.5 w-full max-w-lg mb-6">
                   <Link
                     href="/assessments/track-classification"
-                    className="flex-1 h-12 px-5 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-2 group text-center touch-manipulation active:scale-95"
+                    className="flex-1 h-11 sm:h-12 px-3 sm:px-5 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/25 transition-all flex items-center justify-center gap-1.5 sm:gap-2 group text-center touch-manipulation active:scale-95 whitespace-nowrap"
                   >
-                    <span>តេស្តញែកប្រភេទថ្នាក់ (ទី ១០)</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
+                    <span className="hidden sm:inline">តេស្តញែកប្រភេទថ្នាក់</span>
+                    <span className="sm:hidden">តេស្តញែកថ្នាក់</span>
+                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform shrink-0" />
                   </Link>
 
                   <Link
                     href="/assessments/holland-riasec"
-                    className="flex-1 h-12 px-5 rounded-full bg-white hover:bg-stone-50 active:bg-stone-100 text-stone-700 border-2 border-stone-300 font-bold text-xs sm:text-sm shadow-xs transition-all flex items-center justify-center gap-2 group text-center touch-manipulation active:scale-95"
+                    className="flex-1 h-11 sm:h-12 px-3 sm:px-5 rounded-full bg-white hover:bg-stone-50 active:bg-stone-100 text-stone-700 border-2 border-stone-300 font-bold text-xs sm:text-sm shadow-xs transition-all flex items-center justify-center gap-1.5 sm:gap-2 group text-center touch-manipulation active:scale-95 whitespace-nowrap"
                   >
-                    <span>តេស្ត Holland RIASEC</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0 text-stone-400" />
+                    <span className="hidden sm:inline">តេស្ត Holland RIASEC</span>
+                    <span className="sm:hidden">តេស្ត RIASEC</span>
+                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform shrink-0 text-stone-400" />
                   </Link>
                 </div>
 

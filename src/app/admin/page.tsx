@@ -16,8 +16,8 @@ import {
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@gmail.com");
-  const [password, setPassword] = useState("Thyrak,167167");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [checkingSession, setCheckingSession] = useState(true);
@@ -170,13 +170,8 @@ export default function AdminLoginPage() {
             </button>
           </form>
 
-          {/* Seed info hint */}
-          <div className="mt-5 p-3 rounded-xl bg-slate-800/50 border border-slate-800 text-[11px] text-slate-400 text-center">
-            គណនី Admin លំនាំដើម៖ <strong className="text-indigo-300">admin@gmail.com</strong>
-          </div>
-
           {/* Security footnote */}
-          <div className="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-center gap-1.5 text-xs text-slate-400">
+          <div className="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-center gap-1.5 text-xs text-slate-400">
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
             <span>ការពារដោយ Neon Managed Better Auth</span>
           </div>
