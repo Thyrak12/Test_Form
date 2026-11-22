@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { HollandScoreResult, HollandDescriptionsData, RiasecCode } from "@/types/hollandRiasec";
 import { Briefcase, ChevronDown, Compass, BookOpen, GraduationCap, Sparkles } from "lucide-react";
 import descriptionsJson from "@/data/assessments/holland-riasec/descriptions.json";
@@ -349,6 +350,29 @@ export function PersonalityLetterGuide({
             );
           })}
         </div>
+      </div>
+
+      {/* 4. Explore University Majors & Careers Banner */}
+      <div className="no-print bg-gradient-to-r from-blue-50/70 via-white to-indigo-50/70 rounded-[28px] border-2 border-blue-200/80 p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-[0_4px_16px_rgba(180,160,140,0.08)]">
+        <div className="flex items-center gap-3.5">
+          <div className="w-12 h-12 rounded-2xl bg-white border-2 border-blue-200 flex items-center justify-center text-blue-600 shrink-0 shadow-xs">
+            <GraduationCap className="w-6 h-6" />
+          </div>
+          <div>
+            <h4 className="text-sm sm:text-base font-black text-[#1E293B]">
+              ស្វែងយល់ពីមុខជំនាញឧត្តមសិក្សា និងអាជីពការងារ (Career & Major Explorer)
+            </h4>
+            <p className="text-xs text-stone-500 font-medium mt-0.5">
+              ស្វែងរកមុខជំនាញសិក្សានៅសាកលវិទ្យាល័យទាំង ១៣៦ មុខជំនាញតាមស្តង់ដារក្រសួងអប់រំ យុវជន និងកីឡា (MoEYS)
+            </p>
+          </div>
+        </div>
+        <Link
+          href="/careers"
+          className="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-black whitespace-nowrap shadow-xs transition-all flex items-center gap-2 shrink-0 active:scale-98"
+        >
+          <span>ស្វែងយល់ពីមុខជំនាញ ➔</span>
+        </Link>
       </div>
     </div>
   );

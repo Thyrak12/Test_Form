@@ -186,6 +186,24 @@ export function TrackResultBanner({
             <div className="mt-2 text-[11px] sm:text-xs text-stone-500 bg-white/70 rounded-xl p-3 border border-stone-200/70">
               🧭 <strong>ត្រីវិស័យតម្រង់ទិស៖</strong> លទ្ធផលតេស្តនេះមិនតម្រូវឱ្យសិស្សត្រូវតែអនុវត្តតាមទាំងស្រុងនោះទេ ប៉ុន្តែជាត្រីវិស័យបង្ហាញផ្លូវ និងផ្តល់ប្រឹក្សាគាំទ្រផ្នែកស្មារតី ក្នុងការពិភាក្សាជាមួយមាតាបិតា និងលោកគ្រូអ្នកគ្រូ។
             </div>
+
+            {/* Link to Career & Major Explorer */}
+            <div className="no-print pt-2 flex flex-wrap items-center gap-3">
+              <Link
+                href={isScience ? "/careers/science" : isSocial ? "/careers/social" : "/careers"}
+                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black shadow-xs transition-all active:scale-98 ${
+                  isScience
+                    ? "bg-blue-600 hover:bg-blue-700 text-white"
+                    : isSocial
+                    ? "bg-emerald-600 hover:bg-emerald-700 text-white"
+                    : "bg-stone-800 hover:bg-stone-900 text-white"
+                }`}
+              >
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>ស្វែងយល់ពីមុខជំនាញឧត្តមសិក្សាស្របនឹងគន្លងនេះ</span>
+                <span className="text-xs">➔</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

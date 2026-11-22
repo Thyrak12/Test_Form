@@ -1,30 +1,43 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-battambang), "Battambang", system-ui, -apple-system, sans-serif;
+}
+
 @layer base {
   :root {
-    --font-kantumruy: 'Kantumruy Pro', system-ui, -apple-system, sans-serif;
+    /* Brand & Track Tokens */
+    --color-primary: #1F5BFF;
+    --color-primary-light: #EAF1FF;
     
-    /* Academic & Institutional Palette */
-    --brand-primary: #1d4ed8;
-    --brand-primary-hover: #1e40af;
-    --brand-subtle: #eff6ff;
-    --brand-border: #bfdbfe;
+    --color-science: #1F5BFF;
+    --color-science-bg: #EAF1FF;
     
-    --surface-bg: #f8fafc;
+    --color-social: #E37400;
+    --color-social-bg: #FFF4E0;
+    
+    --color-agriculture: #1E9E6A;
+    --color-agriculture-bg: #E8F8F0;
+    
+    --color-health: #E5484D;
+    --color-health-bg: #FDECEC;
+    
+    --color-engineering: #6E56CF;
+    --color-engineering-bg: #F1EEFD;
+    
+    --color-text-main: #1B2430;
+    --color-text-muted: #5B6675;
+    --color-border: #E6E8EC;
+    
+    --surface-bg: #FAF7F2;
     --surface-card: #ffffff;
-    --border-subtle: #e2e8f0;
-    --border-strong: #cbd5e1;
-    
-    --text-primary: #0f172a;
-    --text-secondary: #334155;
-    --text-muted: #64748b;
   }
 
   body {
-    font-family: var(--font-kantumruy), system-ui, -apple-system, sans-serif;
-    line-height: 1.65;
+    font-family: var(--font-battambang), "Battambang", system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
     background-color: var(--surface-bg);
-    color: var(--text-secondary);
+    color: var(--color-text-main);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -34,31 +47,79 @@
   }
 }
 
+/* Typography Scale & Khmer Line Height */
+.h1-khmer {
+  font-size: 2.5rem; /* 40px */
+  line-height: 3rem; /* 48px */
+  font-weight: 800;
+}
+
+.h2-khmer {
+  font-size: 1.75rem; /* 28px */
+  line-height: 2.25rem; /* 36px */
+  font-weight: 800;
+}
+
+.h3-khmer {
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+  font-weight: 700;
+}
+
+.body-khmer {
+  font-size: 1rem; /* 16px */
+  line-height: 1.75rem; /* 28px */
+}
+
+.caption-khmer {
+  font-size: 0.8125rem; /* 13px */
+  line-height: 1.25rem; /* 20px */
+}
+
 /* Ensure Khmer diacritics, subscripts and tone marks are not clipped */
 .khmer-content {
-  font-family: var(--font-kantumruy), system-ui, sans-serif;
+  font-family: var(--font-battambang), "Battambang", system-ui, sans-serif;
   line-height: 1.75;
   word-break: break-word;
 }
 
-/* Subtle focus-visible ring for accessible, human-centered UI */
+/* Subtle focus-visible ring for accessible, human-centered UI (contrast >= 4.5:1) */
 :focus-visible {
-  outline: 2px solid #2563eb;
+  outline: 2px solid #1F5BFF;
   outline-offset: 2px;
 }
 
+/* Print Stylesheet for Major Detail Page (A4 One Page) */
 @media print {
-  body {
-    background: #ffffff !important;
-    color: #0f172a !important;
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm;
   }
 
-  .no-print {
+  body {
+    background: #ffffff !important;
+    color: #1B2430 !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .no-print, header, nav, footer, button, .compare-bar {
     display: none !important;
   }
 
   .print-only {
     display: block !important;
+  }
+
+  /* Force Drawer to display inline on print */
+  .detail-drawer-container {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   .break-inside-avoid {

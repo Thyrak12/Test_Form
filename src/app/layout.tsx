@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Kantumruy_Pro } from "next/font/google";
+import { Battambang } from "next/font/google";
 import "./globals.css";
 
-const kantumruyPro = Kantumruy_Pro({
-  subsets: ["khmer", "latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-kantumruy",
+const battambang = Battambang({
+  subsets: ["khmer"],
+  weight: ["100", "300", "400", "700", "900"],
+  variable: "--font-battambang",
   display: "swap",
 });
 
@@ -20,8 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="km" className={`${kantumruyPro.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
+    <html lang="km" className={`${battambang.variable} h-full antialiased`}>
+      <body className={`${battambang.className} min-h-full flex flex-col bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white`}>
         {children}
       </body>
     </html>

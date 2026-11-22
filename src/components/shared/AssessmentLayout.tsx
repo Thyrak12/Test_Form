@@ -70,11 +70,11 @@ export function AssessmentLayout({
                   priority
                 />
               </div>
-              <div className="flex flex-col leading-tight">
+              <div className="hidden sm:flex flex-col leading-tight">
                 <span className="font-extrabold text-[#1E293B] tracking-tight text-sm sm:text-base">
                   {assessmentNameKh}
                 </span>
-                <span className="text-[10px] sm:text-[11px] text-stone-500 font-medium">
+                <span className="text-[10px] sm:text-[11px] text-stone-500 font-medium block">
                   {assessmentNameEn}
                 </span>
               </div>
@@ -82,6 +82,14 @@ export function AssessmentLayout({
           </div>
 
           <div className="flex items-center gap-2 sm:gap-2.5">
+            <Link
+              href="/careers"
+              className="hidden lg:inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full text-[#0369A1] bg-[#E0F2FE] border-2 border-[#BAE6FD] hover:bg-[#BAE6FD]/40 shadow-2xs transition-all"
+            >
+              <Compass className="w-3.5 h-3.5 text-[#0284C7]" />
+              <span>មុខជំនាញ និងអាជីព</span>
+            </Link>
+
             <Link
               href="/assessments"
               className="hidden md:inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full text-stone-700 bg-white border-2 border-stone-300 hover:bg-stone-50 shadow-2xs transition-all"

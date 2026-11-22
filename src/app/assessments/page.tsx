@@ -52,22 +52,31 @@ export default function AssessmentsHubPage() {
                 priority
               />
             </div>
-            <div>
+            <div className="hidden sm:block">
               <span className="font-extrabold text-[#1E293B] text-sm sm:text-base block leading-tight">
                 កម្រងតេស្តវាយតម្លៃសិស្ស
               </span>
-              <span className="text-[10px] sm:text-[11px] text-stone-500 font-medium">
+              <span className="text-[10px] sm:text-[11px] text-stone-500 font-medium block">
                 Student Assessment Hub
               </span>
             </div>
           </Link>
 
-          <Link
-            href="/"
-            className="text-xs font-bold text-stone-700 hover:text-[#1E293B] px-4 py-2 rounded-full border-2 border-stone-300 bg-white hover:bg-stone-50 shadow-2xs transition-all active:scale-95"
-          >
-            ← ទំព័រដើម
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/careers"
+              className="text-xs font-bold text-[#0369A1] hover:text-[#0284C7] px-3.5 py-2 rounded-full border-2 border-[#BAE6FD] bg-[#E0F2FE] hover:bg-[#BAE6FD]/40 shadow-2xs transition-all active:scale-95"
+            >
+              មុខជំនាញ និងអាជីព
+            </Link>
+
+            <Link
+              href="/"
+              className="text-xs font-bold text-stone-700 hover:text-[#1E293B] px-4 py-2 rounded-full border-2 border-stone-300 bg-white hover:bg-stone-50 shadow-2xs transition-all active:scale-95"
+            >
+              ← ទំព័រដើម
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -190,6 +199,38 @@ export default function AssessmentsHubPage() {
               >
                 <span>ចាប់ផ្តើមតេស្តញែកប្រភេទថ្នាក់</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Career & University Major Explorer Card Banner */}
+        <div className="max-w-4xl mx-auto pt-2">
+          <div className="bg-gradient-to-r from-[#E0F2FE]/70 via-white to-[#FEF3C7]/70 rounded-[28px] p-6 sm:p-8 border-2 border-stone-200/90 shadow-[0_4px_20px_rgba(180,160,140,0.15)] hover:shadow-[0_8px_28px_rgba(180,160,140,0.2)] transition-all flex flex-col md:flex-row items-center justify-between gap-6 group">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-5 flex-1 min-w-0">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border-2 border-stone-200/80 flex items-center justify-center text-blue-600 shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+                <Compass className="w-8 h-8 text-blue-600" />
+              </div>
+              <div className="space-y-1.5 min-w-0">
+                <span className="inline-block text-xs font-black px-3 py-0.5 rounded-full bg-white text-indigo-700 border border-indigo-200 shadow-2xs">
+                  មគ្គុទ្ទេសក៍អាជីព • ១៣៦ មុខជំនាញ
+                </span>
+                <h3 className="text-lg sm:text-xl font-extrabold text-[#1E293B] tracking-tight leading-snug">
+                  ស្វែងយល់ពីមុខជំនាញ និងអាជីពការងារ (Career & Major Explorer)
+                </h3>
+                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-medium">
+                  ពិនិត្យមើលមុខជំនាញសិក្សានៅឧត្តមសិក្សា មុខវិជ្ជាតម្រង់ទិស ម.ទុតិយភូមិ និងឱកាសការងារសម្រាប់ផ្នែកវិទ្យាសាស្ត្រ និងវិទ្យាសាស្ត្រសង្គម
+                </p>
+              </div>
+            </div>
+
+            <div className="shrink-0 w-full sm:w-auto">
+              <Link
+                href="/careers"
+                className="w-full sm:w-auto px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-md shadow-blue-500/20 hover:shadow-lg whitespace-nowrap active:scale-95"
+              >
+                <span>ស្វែងយល់ពីមុខជំនាញ</span>
+                <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>

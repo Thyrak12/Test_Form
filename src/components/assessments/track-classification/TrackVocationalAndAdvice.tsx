@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { TrackClassificationResult } from "@/types/trackClassification";
 import {
   GraduationCap,
@@ -133,6 +134,32 @@ export function TrackVocationalAndAdvice({ result }: TrackVocationalAndAdvicePro
           <span>
             ការបង្កើតទម្លាប់អាន ការធ្វើលំហាត់ទៀងទាត់ និងការពិភាក្សាជាក្រុម នឹងជួយឱ្យអ្នកមានទំនុកចិត្តខ្ពស់ក្នុងថ្នាក់វិទ្យាល័យ។
           </span>
+        </div>
+      </div>
+
+      {/* Explore All 136 Majors Cross-Link Banner */}
+      <div className="no-print md:col-span-2">
+        <div className="bg-[#FAF7F2] rounded-[24px] border-2 border-stone-200/90 p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-2xl bg-white border border-stone-200 flex items-center justify-center text-blue-600 shrink-0 shadow-xs">
+              <GraduationCap className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-sm font-black text-[#1E293B]">
+                ចង់ស្វែងយល់ពីមុខជំនាញ និងអាជីពការងារទាំង ១៣៦ មុខជំនាញ?
+              </h4>
+              <p className="text-xs text-stone-500 font-medium">
+                ពិនិត្យមើលមុខវិជ្ជាត្រៀមប្រឡងបាក់ឌុប តម្រូវការទីផ្សារការងារ និងមុខជំនាញតាម{result.recommendedTrackKm}
+              </p>
+            </div>
+          </div>
+          <Link
+            href={recommendedTrack === "science" ? "/careers/science" : "/careers/social"}
+            className="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-black whitespace-nowrap shadow-xs transition-all flex items-center gap-2 shrink-0 active:scale-98"
+          >
+            <span>រុករកមុខជំនាញទាំងអស់</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </div>
     </div>
