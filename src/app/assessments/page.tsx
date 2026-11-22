@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { PlatformNavbar } from "@/components/shared/PlatformNavbar";
 import {
   GraduationCap,
   ArrowRight,
@@ -38,47 +39,8 @@ export default function AssessmentsHubPage() {
         </svg>
       </div>
 
-      {/* Header */}
-      <header className="border-b-2 border-stone-200/90 bg-[#FAF7F2]/95 backdrop-blur-md sticky top-0 z-30">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 sm:h-18 flex items-center justify-between relative z-10">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden bg-white border-2 border-stone-300 shadow-2xs flex items-center justify-center shrink-0 ring-4 ring-amber-100/60 group-hover:scale-105 transition-transform">
-              <Image
-                src="/logo.png"
-                alt="Personality Test Logo"
-                width={44}
-                height={44}
-                className="w-full h-full object-contain p-0.5"
-                priority
-              />
-            </div>
-            <div className="hidden sm:block">
-              <span className="font-extrabold text-[#1E293B] text-sm sm:text-base block leading-tight">
-                កម្រងតេស្តវាយតម្លៃសិស្ស
-              </span>
-              <span className="text-[10px] sm:text-[11px] text-stone-500 font-medium block">
-                Student Assessment Hub
-              </span>
-            </div>
-          </Link>
-
-          <div className="flex items-center gap-2">
-            <Link
-              href="/careers"
-              className="text-xs font-bold text-[#0369A1] hover:text-[#0284C7] px-3.5 py-2 rounded-full border-2 border-[#BAE6FD] bg-[#E0F2FE] hover:bg-[#BAE6FD]/40 shadow-2xs transition-all active:scale-95"
-            >
-              មុខជំនាញ និងអាជីព
-            </Link>
-
-            <Link
-              href="/"
-              className="text-xs font-bold text-stone-700 hover:text-[#1E293B] px-4 py-2 rounded-full border-2 border-stone-300 bg-white hover:bg-stone-50 shadow-2xs transition-all active:scale-95"
-            >
-              ← ទំព័រដើម
-            </Link>
-          </div>
-        </div>
-      </header>
+      {/* Header with Responsive Drawer */}
+      <PlatformNavbar />
 
       {/* Main Hub Content */}
       <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-8 relative z-10">

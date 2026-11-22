@@ -70,11 +70,11 @@ export function AssessmentLayout({
                   priority
                 />
               </div>
-              <div className="hidden sm:flex flex-col leading-tight">
+              <div className="flex flex-col leading-tight">
                 <span className="font-extrabold text-[#1E293B] tracking-tight text-sm sm:text-base">
                   {assessmentNameKh}
                 </span>
-                <span className="text-[10px] sm:text-[11px] text-stone-500 font-medium block">
+                <span className="text-[10px] sm:text-[11px] text-stone-500 font-medium">
                   {assessmentNameEn}
                 </span>
               </div>

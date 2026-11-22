@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { PlatformNavbar } from "@/components/shared/PlatformNavbar";
 import {
   Compass,
   ArrowRight,
@@ -150,53 +151,8 @@ export default function Home() {
         </svg>
       </div>
 
-      {/* 1. Top Navigation Bar */}
-      <header className="border-b-2 border-stone-200/90 bg-[#FAF7F2]/95 backdrop-blur-md sticky top-0 z-40 transition-shadow">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 sm:h-18 flex items-center justify-between relative z-10">
-          {/* Logo & Platform Name */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full overflow-hidden bg-white border-2 border-stone-300/90 shadow-2xs flex items-center justify-center shrink-0 ring-4 ring-amber-100/60 group-hover:scale-105 transition-transform">
-              <Image
-                src="/logo.png"
-                alt="Personality Test Logo"
-                width={44}
-                height={44}
-                className="w-full h-full object-contain p-0.5"
-                priority
-              />
-            </div>
-            <div className="hidden sm:block">
-              <span className="font-extrabold text-[#1E293B] text-sm sm:text-base block leading-tight">
-                តេស្តស្វែងយល់ពីខ្លួនឯង
-              </span>
-              <span className="text-[10px] sm:text-[11px] text-stone-500 font-medium block">
-                Student Personality & Career Guidance
-              </span>
-            </div>
-          </Link>
-
-          {/* Sketchy Pill Button */}
-          <div className="flex items-center gap-2">
-            <Link
-              href="/careers"
-              className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#E0F2FE] hover:bg-[#BAE6FD] text-[#0369A1] border-2 border-[#BAE6FD] font-bold text-xs sm:text-sm shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm shrink-0"
-            >
-              <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#0284C7] shrink-0" />
-              <span className="hidden sm:inline">មុខជំនាញ និងអាជីព</span>
-              <span className="sm:hidden">មុខជំនាញ</span>
-            </Link>
-
-            <Link
-              href="/assessments"
-              className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white hover:bg-stone-50 active:bg-stone-100 text-[#1E293B] border-2 border-stone-300 font-semibold text-xs sm:text-sm shadow-xs transition-all flex items-center gap-1.5 hover:shadow-sm shrink-0"
-            >
-              <LayoutGrid className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-stone-600 shrink-0" />
-              <span className="hidden sm:inline">កម្រងតេស្តទាំងអស់</span>
-              <span className="sm:hidden">កម្រងតេស្ត</span>
-            </Link>
-          </div>
-        </div>
-      </header>
+      {/* 1. Top Navigation Bar with Mobile Drawer */}
+      <PlatformNavbar />
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col items-center relative z-10">
